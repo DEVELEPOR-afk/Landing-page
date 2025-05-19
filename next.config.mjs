@@ -5,6 +5,10 @@ const nextConfig = {
     // Warning: this will completely disable ESLint during builds
     ignoreDuringBuilds: true,
   },
+  // Fix for routes-manifest.json error
+  distDir: '.next',
+  // Ensure output is properly configured
+  output: 'standalone',
 };
 
 export default nextConfig;
