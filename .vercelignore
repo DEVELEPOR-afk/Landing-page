@@ -1,0 +1,4 @@
+# Ignore nothing
+!.eslintrc.js
+!.eslintrc.json
+!next.config.mjs

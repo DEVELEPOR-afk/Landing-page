@@ -8,7 +8,7 @@ const testimonials = [
     name: 'Alex Thompson',
     role: 'Crypto Trader, 2+ Years',
     content:
-      "GrowMint changed everything for me. Their mentors helped me identify why I was losing trades and completely transformed my approach to risk management. I'm now consistently profitable for the first time.",
+      "GrowMint changed everything for me. Their mentors helped me identify why I was losing trades and completely transformed my approach to risk management. I&apos;m now consistently profitable for the first time.",
     image: '/testimonials/sarah.jpg', // Reusing existing image
   },
   {
@@ -22,7 +22,7 @@ const testimonials = [
     name: 'Marcus Williams',
     role: 'Options Trader, 3+ Years',
     content:
-      "What sets GrowMint apart is the quality of their mentors. These aren't just educators - they're actual traders who share their real entries, exits, and thought processes. The ROI on this membership has been astronomical.",
+      "What sets GrowMint apart is the quality of their mentors. These aren&apos;t just educators - they&apos;re actual traders who share their real entries, exits, and thought processes. The ROI on this membership has been astronomical.",
     image: '/testimonials/emily.jpg', // Reusing existing image
   },
 ];
