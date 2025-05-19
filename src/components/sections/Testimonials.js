@@ -48,7 +48,7 @@ const Testimonials = () => {
             What Our <span className="bg-gradient-primary text-transparent bg-clip-text">Members Say</span>
           </h2>
           <p className="text-lavender-400/90 max-w-2xl mx-auto text-lg">
-            Don't just take our word for it. Here's what traders who have joined our community have to say about their experience.
+            Don&apos;t just take our word for it. Here&apos;s what traders who have joined our community have to say about their experience.
           </p>
         </motion.div>
 
@@ -77,7 +77,7 @@ const Testimonials = () => {
                   <p className="text-lavender-400/80">{testimonial.role}</p>
                 </div>
               </div>
-              <p className="text-white/80 italic leading-relaxed">"{testimonial.content}"</p>
+              <p className="text-white/80 italic leading-relaxed">&ldquo;{testimonial.content}&rdquo;</p>
               
               {/* Rating stars */}
               <div className="flex mt-4 text-mint-500">

@@ -40,7 +40,7 @@ const Contact = () => {
             <span className="gradient-text">Touch</span>
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Have questions about our mentorship program? We're here to help. Reach
+            Have questions about our mentorship program? We&apos;re here to help. Reach
             out to us through any of the following channels.
           </p>
         </motion.div>

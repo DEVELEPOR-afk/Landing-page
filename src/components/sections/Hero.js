@@ -149,7 +149,7 @@ const Hero = () => {
                 </svg>
               </motion.div>
               <div className="flex flex-col">
-                <span className="text-xs uppercase tracking-wider text-lavender-400/90 font-semibold">Don't Miss Out!</span>
+                <span className="text-xs uppercase tracking-wider text-lavender-400/90 font-semibold">Don&apos;t Miss Out!</span>
                 <span className="text-md font-bold bg-gradient-to-r from-violet-400 to-blue-400 bg-clip-text text-transparent">
                   Next Live Webinar: May 25, 2025 @ 7:00 PM IST
                 </span>
