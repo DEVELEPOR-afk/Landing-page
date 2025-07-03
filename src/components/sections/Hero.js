@@ -308,7 +308,7 @@ const Hero = () => {
                     src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_chart&symbol=BINANCE%3ABTCUSDT&interval=15&theme=dark&style=1&locale=en"
                     className="w-full h-full object-cover rounded-feature"
                     frameBorder="0" 
-                    allowTransparency="true" 
+                    allowtransparency="true" 
                     scrolling="no"
                     title="BINANCE:BTCUSDT TradingView Chart"
                   ></iframe>
