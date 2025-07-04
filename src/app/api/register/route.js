@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import Registration from '@/models/register.model';
 import { connectDB } from '@/lib/mongodb';
-import { resend } from '@/lib/resend.js'; 
-// import { sendWelcomeEmail, sendAdminNotification } from '@/lib/directEmailService';
+import { resend } from '@/lib/resend.js';
 
 // Log that we're using Direct Email Service for reliable email delivery
 console.log('Using Direct Email Service for reliable email delivery to multiple users');
