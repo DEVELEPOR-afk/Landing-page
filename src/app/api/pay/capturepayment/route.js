@@ -2,20 +2,31 @@ import { NextResponse } from 'next/server';
 import axios from 'axios';
 import getAccessToken from '../getaccesstoken/route';
 
-const capturePayment = async (req, res) => {
+export async function POST(request) {
     try {
+        const { searchParams } = new URL(request.url);
+        const paymentId = searchParams.get('paymentId');
+        
+        if (!paymentId) {
+            return NextResponse.json(
+                { success: false, message: 'Payment ID is required' },
+                { status: 400 }
+            );
+        }
+        
         const accessToken = await getAccessToken();
-        const {paymentId} = req.params;
         const response = await axios.post(
             `${process.env.PAYPAL_BASEURL}/v1/checkout/orders/${paymentId}/capture`,
+            {},
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${accessToken}`,
+                    'Authorization': `Bearer ${accessToken}`,
                 },
             }
         );
-      const paymentData = response.data;
+        
+        const paymentData = response.data;
 
       if (paymentData.status !== "COMPLETED") {
         return NextResponse.json({ success: false, message: "Payment failed" }, { status: 400 });

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getAccessToken = async () => {
+const getAccessToken = async () => {
   try {
     const response = await axios.post(
       `${process.env.PAYPAL_BASEURL}/v1/oauth2/token`,
@@ -21,3 +21,5 @@ export const getAccessToken = async () => {
     throw new Error("Error getting access token");
   }
 };
+
+export default getAccessToken;
