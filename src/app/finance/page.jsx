@@ -37,12 +37,27 @@ const FinancialForm = () => {
     "Contact & Consent"
   ];
 
+  // Map each step number to its schema key
+  const stepKeyMap = {
+    1: 'personalInfo',
+    2: 'income',
+    3: 'expenses',
+    4: 'assets',
+    5: 'liabilities',
+    6: 'goals',
+    7: 'insurance',
+    8: 'risk',
+    9: 'contact',
+  };
+
   const handleNext = (stepData) => {
-    setFormData(prev => ({ ...prev, ...stepData }));
+    const key = stepKeyMap[currentStep];
+    setFormData(prev => ({ ...prev, [key]: stepData }));
+
     if (currentStep < totalSteps) {
       setCurrentStep(prev => prev + 1);
     } else {
-      handleSubmit({ ...formData, ...stepData });
+      handleSubmit({ ...formData, [key]: stepData });
     }
   };
 
@@ -56,7 +71,7 @@ const FinancialForm = () => {
     console.log("Final form data:", finalData);
     // Here we would generate PDF and send email
     // For now, navigate to success page
-    router.push("/success");
+    router.push("/pay");
   };
 
   const renderStep = () => {
@@ -78,7 +93,7 @@ const FinancialForm = () => {
       case 8:
         return <RiskStep onNext={handleNext} onPrevious={handlePrevious} initialData={formData} />;
       case 9:
-        return <ContactStep onNext={handleNext} onPrevious={handlePrevious} initialData={formData} />;
+        return <ContactStep onNext={handleNext} onPrevious={handlePrevious} initialData={formData} formData={formData} />;
       default:
         return <PersonalInfoStep onNext={handleNext} initialData={formData} />;
     }

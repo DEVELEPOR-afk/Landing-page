@@ -1,7 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { handleSendFinancialReport } from "@/utils/mockApi";
 import useToast from "@/hooks/use-toast";
 
 const ContactStep = ({ onNext, onPrevious, initialData = {}, formData = {} }) => {
@@ -18,7 +17,7 @@ const ContactStep = ({ onNext, onPrevious, initialData = {}, formData = {} }) =>
     if (!consentGiven) {
       toast({
         title: "Consent Required",
-        description: "Please provide consent to process your data and generate the financial report.",
+        description: "Please provide consent to process your data.",
         variant: "destructive"
       });
       return;
@@ -46,50 +45,31 @@ const ContactStep = ({ onNext, onPrevious, initialData = {}, formData = {} }) =>
       };
 
       // Save all form data to the database
-      try {
-        const dbRes = await fetch('/api/finance', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(finalData),
-        });
-        const dbJson = await dbRes.json();
-        if (!dbJson.success) {
-          throw new Error(dbJson.error || 'Failed to save data');
-        }
-      } catch (dbErr) {
-        toast({
-          title: "Database Error",
-          description: `Could not save your data: ${dbErr instanceof Error ? dbErr.message : 'Unknown error'}`,
-          variant: "destructive"
-        });
-        setIsSubmitting(false);
-        return;
+      const dbRes = await fetch('/api/finance', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(finalData),
+      });
+
+      const result = await dbRes.json();
+      
+      if (!dbRes.ok) {
+        throw new Error(result.message || 'Failed to save form data');
       }
 
-      // Send the financial report email
-      const emailResult = await handleSendFinancialReport(finalData, data.email);
+      toast({
+        title: "Success!",
+        description: "Your information has been saved successfully.",
+      });
       
-      if (emailResult.success) {
-        console.log('Financial report email sent successfully:', emailResult.data);
-        console.log('SUCCESS: Data saved to DB and email sent:', {
-          dbId: dbJson?.id,
-          emailResult
-        });
-        toast({
-          title: "Success!",
-          description: "Your financial report has been generated and sent to your email.",
-        });
-        
-        // Proceed to success page
-        onNext(finalData);
-      } else {
-        throw new Error(emailResult.error || 'Failed to send financial report');
-      }
+      // Proceed to next step (success page)
+      onNext(finalData);
+      
     } catch (error) {
-      console.error('Error sending financial report:', error);
+      console.error('Error saving data:', error);
       toast({
         title: "Error",
-        description: `Failed to send your financial report: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        description: `Failed to save your information: ${error instanceof Error ? error.message : 'Please try again'}`,
         variant: "destructive"
       });
     } finally {

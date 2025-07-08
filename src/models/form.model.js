@@ -107,7 +107,7 @@ const FormDataSchema = new mongoose.Schema({
   expenses: ExpensesSchema,
   assets: AssetsSchema,
   liabilities: LiabilitiesSchema,
-  insurance: { type: Number, default: 0 },
+  insurance: InsuranceSchema,
   goals: GoalsSchema,
   risk: RiskSchema,
 }, { timestamps: true });
