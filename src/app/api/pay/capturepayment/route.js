@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
-import getAccessToken from './getaccesstoken';
+import getAccessToken from '../getaccesstoken/route';
 
 const capturePayment = async (req, res) => {
     try {
