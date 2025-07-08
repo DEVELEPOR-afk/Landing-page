@@ -4,38 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-// Particle animation component
-const Particles = ({ count = 40 }) => {
-  return (
-    <div className="absolute inset-0 overflow-hidden">
-      {[...Array(count)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 md:w-2 md:h-2 rounded-full"
-          style={{
-            background: i % 3 === 0 ? '#6E3AD3' : i % 3 === 1 ? '#2CCCFF' : '#FF2CED',
-            boxShadow: i % 3 === 0 ? '0 0 12px #6E3AD3' : i % 3 === 1 ? '0 0 12px #2CCCFF' : '0 0 12px #FF2CED',
-          }}
-          initial={{
-            x: `${Math.random() * 100}%`,
-            y: `${Math.random() * 100}%`,
-            scale: Math.random() * 0.5 + 0.5,
-          }}
-          animate={{
-            x: `${Math.random() * 100}%`,
-            y: `${Math.random() * 100}%`,
-            opacity: [0.2, 0.8, 0.2],
-          }}
-          transition={{
-            duration: Math.random() * 20 + 10,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        />
-      ))}
-    </div>
-  );
-};
+
 
 // Stat card component
 const StatCard = ({ number, title, icon, delay }) => {

@@ -1,7 +1,7 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-// import { handleSendFinancialReport } from "@/utils/mockApi";
+import { handleSendFinancialReport } from "@/utils/mockApi";
 import useToast from "@/hooks/use-toast";
 
 const ContactStep = ({ onNext, onPrevious, initialData = {}, formData = {} }) => {
@@ -27,18 +27,54 @@ const ContactStep = ({ onNext, onPrevious, initialData = {}, formData = {} }) =>
     setIsSubmitting(true);
 
     try {
+      // Build nested data object for backend schema
       const finalData = {
-        ...formData,
-        ...data,
-        consentGiven,
-        marketingConsent
+        personalInfo: formData.personalInfo,
+        contact: {
+          ...(formData.contact || {}),
+          ...data,
+          consentGiven,
+          marketingConsent
+        },
+        income: formData.income,
+        expenses: formData.expenses,
+        assets: formData.assets,
+        liabilities: formData.liabilities,
+        insurance: formData.insurance,
+        goals: formData.goals,
+        risk: formData.risk,
       };
+
+      // Save all form data to the database
+      try {
+        const dbRes = await fetch('/api/finance', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(finalData),
+        });
+        const dbJson = await dbRes.json();
+        if (!dbJson.success) {
+          throw new Error(dbJson.error || 'Failed to save data');
+        }
+      } catch (dbErr) {
+        toast({
+          title: "Database Error",
+          description: `Could not save your data: ${dbErr instanceof Error ? dbErr.message : 'Unknown error'}`,
+          variant: "destructive"
+        });
+        setIsSubmitting(false);
+        return;
+      }
 
       // Send the financial report email
       const emailResult = await handleSendFinancialReport(finalData, data.email);
       
       if (emailResult.success) {
         console.log('Financial report email sent successfully:', emailResult.data);
+        console.log('SUCCESS: Data saved to DB and email sent:', {
+          dbId: dbJson?.id,
+          emailResult
+        });
         toast({
           title: "Success!",
           description: "Your financial report has been generated and sent to your email.",
