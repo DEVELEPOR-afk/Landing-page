@@ -90,7 +90,7 @@ const ContactStep = ({ onNext, onPrevious, initialData = {}, formData = {} }) =>
             <input
               id="email"
               type="email"
-              className={`w-full px-3 py-2 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
+              className={`w-full px-3 py-2 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black`}
               {...register("email", { 
                 required: "Email is required",
                 pattern: {
@@ -115,7 +115,7 @@ const ContactStep = ({ onNext, onPrevious, initialData = {}, formData = {} }) =>
             <input
               id="phone"
               type="tel"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black"
               {...register("phone")}
               placeholder="+91 9876543210"
             />
