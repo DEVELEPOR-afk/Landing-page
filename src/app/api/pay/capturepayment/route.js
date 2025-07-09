@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
-import getAccessToken from '../getaccesstoken/route';
+import { getAccessToken } from '../getaccesstoken/route';
 
 export async function POST(request) {
     try {
@@ -27,8 +27,10 @@ export async function POST(request) {
         );
         
         const paymentData = response.data;
+      console.log("[CapturePayment] Payment data received:", paymentData);
 
       if (paymentData.status !== "COMPLETED") {
+        console.log(`[CapturePayment] Payment NOT completed. Status: ${paymentData.status}`);
         return NextResponse.json({ success: false, message: "Payment failed" }, { status: 400 });
       }
 
@@ -38,6 +40,7 @@ export async function POST(request) {
       const tierExpiryDate = new Date(currentDate.setDate(currentDate.getDate() + days));
       
 
+      console.log(`[CapturePayment] Payment completed successfully for ${email}. Tier expires at ${tierExpiryDate}`);
       return NextResponse.json({ success: true, message: "Payment successful", user: { email, tierExpiryDate } });
     } catch (err) {
         console.error(err);

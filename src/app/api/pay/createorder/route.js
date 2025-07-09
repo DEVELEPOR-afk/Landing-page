@@ -17,16 +17,16 @@ export async function POST(request) {
                         quantity: '1',
                         unit_amount: {
                             currency_code: 'USD',
-                            value: '99.99'
+                            value: '10'
                         }
                     }],
                     amount: {
                         currency_code: 'USD',
-                        value: '99.99',
+                        value: '10',
                         breakdown: {
                             item_total: {
                                 currency_code: 'USD',
-                                value: '99.99'
+                                value: '10'
                             }
                         }
                     }
