@@ -160,7 +160,7 @@ const Hero = () => {
                 Join Our Discord
               </Link>
               <Link
-                href="#register"
+                href="/finance"
                 className="px-8 py-3 bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 rounded-button text-white font-semibold shadow-button hover:shadow-glow transition-all duration-300 text-center flex items-center justify-center gap-2"
               >
                 <svg
