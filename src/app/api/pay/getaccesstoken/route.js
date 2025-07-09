@@ -7,7 +7,7 @@ export const getAccessToken = async () => {
       "grant_type=client_credentials",
       {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
         },
         auth: {
           username: process.env.PAYPAL_CLIENTID,

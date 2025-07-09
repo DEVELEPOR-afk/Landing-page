@@ -16,17 +16,17 @@ export async function POST(request) {
                         description: 'Item Description',
                         quantity: '1',
                         unit_amount: {
-                            currency_code: 'INR',
-                            value: '1.00'
+                            currency_code: 'USD',
+                            value: '99.99'
                         }
                     }],
                     amount: {
-                        currency_code: 'INR',
-                        value: '1.00',
+                        currency_code: 'USD',
+                        value: '99.99',
                         breakdown: {
                             item_total: {
-                                currency_code: 'INR',
-                                value: '1.00'
+                                currency_code: 'USD',
+                                value: '99.99'
                             }
                         }
                     }
